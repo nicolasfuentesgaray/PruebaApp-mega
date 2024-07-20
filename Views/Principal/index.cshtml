@@ -1,0 +1,138 @@
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<div class="container mt-5">
+    <h2>Productos Agregados de: @ViewBag.usuario</h2>
+    <table id="example" class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>id</th>
+                <th>nombre</th>
+                <th>precio</th>
+                <th>descripcion</th>
+                <th>cantidad</th>
+                <th>accion</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<div class="container mt-5">
+    <h2>Lista de Productos</h2>
+    <table id="example2" class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>id</th>
+                <th>nombre</th>
+                <th>precio</th>
+                <th>descripcion</th>
+                <th>cantidad</th>
+                <th>accion</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+
+
+    function eliminar(id) {
+
+        $.ajax({
+            url: 'http://localhost:8080/compra/eliminar?id=' + id,
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Authorization': 'Bearer @ViewBag.token'
+            },
+            success: function (response) {
+
+                $('#example').DataTable().ajax.reload();
+            },
+            error: function (xhr, status, error) {
+
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function accion(id) {
+
+        $.ajax({
+            url: 'http://localhost:8080/compra/grabar?id_usuario=@ViewBag.perfil&id_producto=' + id,
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Authorization': 'Bearer @ViewBag.token'
+            },
+            success: function (response) {
+
+                $('#example').DataTable().ajax.reload();
+            },
+            error: function (xhr, status, error) {
+
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "ajax": {
+                "url": "http://localhost:8080/compra/listar?id_usuario=@ViewBag.perfil",
+                "type": "GET",
+                "beforeSend": function (request) {
+                    request.setRequestHeader("Authorization", "Bearer @ViewBag.token");
+                },
+                "dataSrc": function (json) {
+                    return json.map(item => {
+                        const key = Object.keys(item)[0];
+                        const value = Object.values(item)[0];
+                        value.key = key;
+                        return value;
+                    });
+                }
+            },
+            "columns": [
+                { "data": "key" },
+                { "data": "nombre" },
+                { "data": "precio" },
+                { "data": "descripcion" },
+                { "data": "cantidad" },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return '<button class="btn btn-primary" onclick="eliminar(' + row.key + ')">Eliminar</button>';
+                    }
+                }
+            ]
+        });
+
+        $('#example2').DataTable({
+            "ajax": {
+                "url": "http://localhost:8080/producto/lista",
+                "type": "GET",
+                "beforeSend": function (request) {
+                    request.setRequestHeader("Authorization", "Bearer @ViewBag.token");
+                },
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "nombre" },
+                { "data": "precio" },
+                { "data": "descripcion" },
+                { "data": "cantidad" },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return '<button class="btn btn-primary" onclick="accion(' + row.id + ')">Agregar</button>';
+                    }
+                }
+            ]
+        });
+    });
+</script>
