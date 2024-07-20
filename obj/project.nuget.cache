@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "x67b/922d0AF6Px7jpMs9i47Vx9UnX5SpSs4I/niDhCH839l3iiXISdLk7iXtAZsDd+XWa4hAvxo+UlRHrq27g==",
+  "success": true,
+  "projectFilePath": "/Users/ignaciodonosolopez/pruebaMega/pruebaMega.csproj",
+  "expectedPackageFiles": [
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/8.0.7/microsoft.aspnetcore.authentication.jwtbearer.8.0.7.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.identitymodel.abstractions/8.0.0/microsoft.identitymodel.abstractions.8.0.0.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.0.0/microsoft.identitymodel.jsonwebtokens.8.0.0.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.identitymodel.logging/8.0.0/microsoft.identitymodel.logging.8.0.0.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.identitymodel.protocols/7.1.2/microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/7.1.2/microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/microsoft.identitymodel.tokens/8.0.0/microsoft.identitymodel.tokens.8.0.0.nupkg.sha512",
+    "/Users/ignaciodonosolopez/.nuget/packages/system.identitymodel.tokens.jwt/8.0.0/system.identitymodel.tokens.jwt.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
